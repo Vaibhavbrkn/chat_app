@@ -48,10 +48,9 @@ socket.on('message' , (message)=>{
 socket.on('locationMessage' , (message)=>{
     console.log(message)
     const html = Mustache.render(locationMessageTemplate,{
-        username : message.username,
+        username: message.username,
         url: message.url,
-        createdAt:moment(message.createdAt).format('hh:mm a')
-    })
+        createdAt:moment(message.createdAt).format('hh:mm a')})
     $messages.insertAdjacentHTML('beforeend' ,html)
     autoscroll()
 })
@@ -89,7 +88,6 @@ document.querySelector('#increment').addEventListener('click' , ()=>{
     socket.emit('increment')
 })
 */
-
 $sendLocation.addEventListener('click',()=>{
     if(!navigator.geolocation){
         return alert('Geolocation is not supported by your browser')
@@ -97,7 +95,7 @@ $sendLocation.addEventListener('click',()=>{
     $sendLocation.setAttribute('disabled' , 'disabled')
 
     navigator.geolocation.getCurrentPosition((position)=>{
-        console.log(position)
+       //console.log(position)
         socket.emit('sendLocation' ,{
             latitude : position.coords.latitude,
             longitude : position.coords.longitude
